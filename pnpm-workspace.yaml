@@ -3,4 +3,4 @@ allowBuilds:
   esbuild: false
   sharp: false
   swup: false
-  workerd: set this to true or false
+  workerd: true
