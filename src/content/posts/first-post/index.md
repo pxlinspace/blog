@@ -2,7 +2,7 @@
 title: New Blog!
 published: 2026-08-13
 description: "IT'S TIME TO YAP!"
-image: './cover.png'
+image: '/thumbnails/first-post.png'
 tags: []
 category: 'Personal'
 draft: false 
