@@ -27,6 +27,46 @@ export async function GET(context: APIContext) {
 			const content =
 				typeof post.body === "string" ? post.body : String(post.body || "");
 			const cleanedContent = stripInvalidXmlChars(content);
+			const siteBase = String(
+				context.site ?? "https://fuwari.vercel.app",
+			).replace(/\/$/, "");
+			let enclosure: { url: string; length: number; type: string } | undefined;
+			const image = post.data?.image;
+			if (image) {
+				let imageUrl = String(image);
+				if (/^https?:\/\//i.test(imageUrl)) {
+					// keep as-is
+				} else if (imageUrl.startsWith("/")) {
+					imageUrl = `${siteBase}${imageUrl}`;
+				} else {
+					const cleaned = imageUrl.replace(/^\.\/?/, "");
+					imageUrl = `${siteBase}/posts/${post.slug}/${cleaned}`;
+				}
+
+				const ext = (imageUrl.split(".").pop() || "").toLowerCase();
+				let mime = "image/*";
+				switch (ext) {
+					case "png":
+						mime = "image/png";
+						break;
+					case "jpg":
+					case "jpeg":
+						mime = "image/jpeg";
+						break;
+					case "webp":
+						mime = "image/webp";
+						break;
+					case "gif":
+						mime = "image/gif";
+						break;
+					case "svg":
+						mime = "image/svg+xml";
+						break;
+				}
+
+				enclosure = { url: imageUrl, length: 0, type: mime };
+			}
+
 			return {
 				title: post.data.title,
 				pubDate: post.data.published,
@@ -35,6 +75,7 @@ export async function GET(context: APIContext) {
 				content: sanitizeHtml(parser.render(cleanedContent), {
 					allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
 				}),
+				...(enclosure ? { enclosure } : {}),
 			};
 		}),
 		customData: `<language>${siteConfig.lang}</language>`,
