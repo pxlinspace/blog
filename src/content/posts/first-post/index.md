@@ -30,6 +30,6 @@ Right now, my interests are in game development and design, visual art and anima
 
 If you're a cool and epic and amazing person, you can follow this blog through its RSS feed ([here's the link](https://blog.pxlin.space/rss.xml)). If you have no idea what an RSS is, [here's a guide by Nicky Case](https://ncase.me/rss/)! My personal favorite RSS reader is Miniflux since it's so minimalistic.
 
-Otherwise if you're a slightly less cool and epic and amazing person, I'll probably post a link to each blog post on my social accounts, especially my [bluesky](https://bsky.app/profile/pxlin.space)!
+Otherwise, I'll probably post a link to each blog post on my social accounts, especially my [bluesky](https://bsky.app/profile/pxlin.space)!
 
 That's all I have to say for now. I have a few ideas for what I'll blog about next, so stay tuned!
